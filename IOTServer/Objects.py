@@ -47,10 +47,11 @@ class Objects:
         while data:
             try:
                 data = self.Connection.recv(2048).decode('utf-8')
-                if data == '':
+                data = data.replace("\n","").replace("\r","")
+                if data == 'exit':
                     break
-                print(data)
-                if int(data):
+                print("Recieved:", data)
+                if int(data) == 0:
                     self.Status = "Closed"
                 else:
                     self.Status = "Open"

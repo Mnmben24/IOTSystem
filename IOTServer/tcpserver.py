@@ -2,7 +2,7 @@ from Objects import Objects
 import socket
 import os
 import json
-from _thread import *
+from  _thread import *
 from appclients import AppClient
 
 class ObjectServer:
@@ -39,7 +39,7 @@ class ObjectServer:
 
 
     def threaded_client(self, connection):
-        data = connection.recv(2048).decode('utf-8').replace("'", '"').replace("\n","")
+        data = connection.recv(2048).decode('utf-8').replace("'", '"').replace("\n","").replace("\r","")
         rData = json.loads(data)
         try:
             if rData['Type'] == "AppClient":
